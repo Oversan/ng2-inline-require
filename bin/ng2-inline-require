@@ -15,8 +15,8 @@ program
   .option('-O, --outfolder [path]', 'Output folder path for generated files')
   .parse(process.argv)
 
-if (program.in.length || program.in.length) {
-  if (program.in.length && program.in.length && isFile(program.in) && !isDirectory(program.out)) {
+if (program.in.length || program.out.length) {
+  if (program.in.length && program.out.length && isFile(program.in) && !isDirectory(program.out)) {
     inline(program.in, program.out)
   } else {
     console.log(chalk.red('Terminated'))
