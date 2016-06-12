@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const chalk = require('chalk')
 const pkg = require('../package')
 const inline = require('../lib/inline')
+const isFile = require('../lib/fileHelpers').isFile
+const isDirectory = require('../lib/fileHelpers').isDirectory
 
 program
   .version(pkg.version)
@@ -10,9 +13,11 @@ program
   .option('-o, --out [path]', 'Output folder path for generated .ts files')
   .parse(process.argv)
 
-console.log('In path ', program.in)
-console.log('Out path ', program.out)
-
-if (program.in.length && program.out.length) {
-  inline(program.in, program.out)
+if (program.in.length || program.in.length) {
+  if (program.in.length && program.in.length && isFile(program.in) && !isDirectory(program.out)) {
+    inline(program.in, program.out)
+  } else {
+    console.log(chalk.red('Terminated'))
+    console.log(chalk.red('Check options "--in", "--out"'))
+  }
 }
