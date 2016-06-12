@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const pkg = require('../package')
+const inline = require('../lib/inline')
+
+program
+  .version(pkg.version)
+  .option('-i, --in [path]', 'Input folder path with .ts files')
+  .option('-o, --out [path]', 'Output folder path for generated .ts files')
+  .parse(process.argv)
+
+console.log('In path ', program.in)
+console.log('Out path ', program.out)
+
+if (program.in.length && program.out.length) {
+  inline(program.in, program.out)
+}
