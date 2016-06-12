@@ -1,6 +1,6 @@
 {
   "name": "ng2-inline-require",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Tool for inline styles and templates into components of Angular2. Very helpfull when create angular2 module with Webpack.",
   "bin": {
     "ng2-inline-require": "./bin/ng2-inline-require"
@@ -39,6 +39,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
+    "glob": "^7.0.3",
     "node-sass": "^3.7.0"
   }
 }

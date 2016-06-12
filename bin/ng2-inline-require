@@ -4,8 +4,15 @@ const program = require('commander')
 const chalk = require('chalk')
 const pkg = require('../package')
 const inline = require('../lib/inline')
+const fileListCreator = require('../lib/fileListCreator')
 const isFile = require('../lib/fileHelpers').isFile
 const isDirectory = require('../lib/fileHelpers').isDirectory
+
+function createInlinedFiles(srcPath, destPath) {
+  fileListCreator(srcPath, destPath).forEach(item => {
+    inline(item.src, item.dest)
+  })
+}
 
 program
   .version(pkg.version)
@@ -17,7 +24,7 @@ program
 
 if (program.in && program.out) {
   if (program.in.length && program.out.length && isFile(program.in) && !isDirectory(program.out)) {
-    inline(program.in, program.out)
+    createInlinedFiles(program.in, program.out)
   } else {
     console.log(chalk.red('Terminated'))
     console.log(chalk.red('Check options "--in", "--out"'))
@@ -26,7 +33,7 @@ if (program.in && program.out) {
 
 if (program.infolder && program.outfolder) {
   if (program.infolder.length && program.outfolder.length && isDirectory(program.infolder) && isDirectory(program.outfolder)) {
-    inline(program.infolder, program.outfolder)
+    createInlinedFiles(program.infolder, program.outfolder)
   } else {
     console.log(chalk.red('Terminated'))
     console.log(chalk.red('Check options "--infolder", "--outfolder"'))
