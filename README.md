@@ -62,8 +62,10 @@ export class App {}
 ## Options
 
 ```sh
-  '-i, --in [path]', 'Input path with .ts file'
-  '-o, --out [path]', 'Output path for generated .ts file'
+  '-i, --in [path]', 'Input file path with .ts extension'
+  '-I, --infolder [path]', 'Input folder path with .ts files'
+  '-o, --out [path]', 'Output file path with .ts extension'
+  '-O, --outfolder [path]', 'Output folder path for generated files'
 ```
 
 ## Supported files to inline in *.ts component
