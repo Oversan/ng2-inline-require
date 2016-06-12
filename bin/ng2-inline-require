@@ -9,8 +9,10 @@ const isDirectory = require('../lib/fileHelpers').isDirectory
 
 program
   .version(pkg.version)
-  .option('-i, --in [path]', 'Input folder path with .ts files')
-  .option('-o, --out [path]', 'Output folder path for generated .ts files')
+  .option('-i, --in [path]', 'Input file path with .ts extension')
+  .option('-I, --infolder [path]', 'Input folder path with .ts files')
+  .option('-o, --out [path]', 'Output file path with .ts extension')
+  .option('-O, --outfolder [path]', 'Output folder path for generated files')
   .parse(process.argv)
 
 if (program.in.length || program.in.length) {
