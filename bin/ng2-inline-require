@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const pkg = require('../package')
@@ -23,8 +24,11 @@ program
   .parse(process.argv)
 
 if (program.in && program.out) {
-  if (program.in.length && program.out.length && isFile(program.in) && !isDirectory(program.out)) {
-    createInlinedFiles(program.in, program.out)
+  const inPath = path.join(process.cwd(), program.in)
+  const outPath = path.join(process.cwd(), program.out)
+
+  if (inPath.length && outPath.length && isFile(inPath) && !isDirectory(outPath)) {
+    createInlinedFiles(inPath, outPath)
   } else {
     console.log(chalk.red('Terminated'))
     console.log(chalk.red('Check options "--in", "--out"'))
@@ -32,8 +36,11 @@ if (program.in && program.out) {
 }
 
 if (program.infolder && program.outfolder) {
-  if (program.infolder.length && program.outfolder.length && isDirectory(program.infolder) && isDirectory(program.outfolder)) {
-    createInlinedFiles(program.infolder, program.outfolder)
+  const infolderPath = path.join(process.cwd(), program.infolder)
+  const outfolderPath = path.join(process.cwd(), program.outfolder)
+
+  if (infolderPath.length && outfolderPath.length && isDirectory(infolderPath) && isDirectory(outfolderPath)) {
+    createInlinedFiles(infolderPath, outfolderPath)
   } else {
     console.log(chalk.red('Terminated'))
     console.log(chalk.red('Check options "--infolder", "--outfolder"'))
